@@ -7,9 +7,9 @@ function authJwt() {
   return expressJwt({ secret, algorithms: ['HS256'], isRevoked })
     .unless({
       path: [
+        {url: /\/public\/uploads(.*)/, methods: ['GET', 'OPTIONS']},
         {url: /\/api\/v1\/products(.*)/, methods: ['GET', 'OPTIONS']},
         {url: /\/api\/v1\/categories(.*)/, methods: ['GET', 'OPTIONS']},
-        {url: /\/api\/v1\/orders(.*)/, methods: ['GET', 'POST', 'OPTIONS']},
         `${api}/users/login`,
         `${api}/users/register`,
       ]
